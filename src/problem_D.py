@@ -19,7 +19,7 @@ class ProblemD(Problem):
         df_dept_compensation = df_merged[['Dept_No','Dept_Name','Total_Compensation']].groupby(by="Dept_No").\
             agg({'Dept_Name':'max','Total_Compensation':"sum"})
         log.info("saving to excel")
-        self.excel.save_df(df_dept_compensation,"solutionsD.xlsx")
+        self.excel.save_df(df_dept_compensation,"solutionD.xlsx")
         self.result = True
 
 

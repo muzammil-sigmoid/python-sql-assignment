@@ -2,6 +2,7 @@ from unittest import TestCase
 from src.problem_B import ProblemB
 from datetime import date
 
+
 class ProblemBTest(TestCase):
     def setUp(self) -> None:
         self.probB = ProblemB("cur")

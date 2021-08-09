@@ -9,6 +9,7 @@ class DatabaseTest(TestCase):
     def tearDown(self) -> None:
         self.db = None
 
+    # tests if connection uri has required parameters
     def test_connection_uri(self):
         self.assertTrue('dbname' in self.db.uri)
         self.assertTrue('user' in self.db.uri)

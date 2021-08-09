@@ -24,7 +24,7 @@ class Database:
             raise Exception("Failed to connect to Database")
 
     # commits the sql queries executed during execution
-    # and closes the cursor and connection
+    # and closes the cursor and connection for the database
     def close(self):
         self.conn.commit()
         self.cur.close()

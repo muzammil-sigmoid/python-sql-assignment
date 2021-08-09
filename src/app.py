@@ -14,10 +14,12 @@ class App:
         self.cur = None
         self.db = Database()
 
+    # returns the cursor
     def get_db_cursor(self):
         self.cur = self.db.connect()
 
-    def solve_problem(self,ques,ques_type):
+    # receives ques object and ques_type as 'A','B','C','D'....
+    def solve_problem(self, ques, ques_type):
         try:
             log.info("solving problem "+ques_type)
             problem = ques(self.cur)
@@ -27,8 +29,12 @@ class App:
             log.info(f"Problem {ques_type} solved.")
         except Exception as err:
             log.error("for problem " + ques_type)
-            log.error(err.args[0])
+            log.error(err.args)
+            raise Exception(f"Fail to solve {ques_type}")
 
+    # the driver function which calls each problem
+    # sequential run
+    # i.e. fails and stops if any question fails
     def solve(self):
         try:
             self.get_db_cursor()

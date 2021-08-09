@@ -4,11 +4,15 @@ from src.excel import Excel
 import logging
 log = logging.getLogger(__name__)
 
+
 class ProblemC(Problem):
+
     def __init__(self, cur):
         super(ProblemC, self).__init__(cur)
         self.excel = Excel()
 
+    # creates table in database
+    # takes list of column names
     def create_table(self, column_names):
         try:
             log.info("creating table")
@@ -22,8 +26,11 @@ class ProblemC(Problem):
             log.error(err.args)
             raise Exception("Creation of table failed")
 
-    def insert_rows(self,column_names,records):
+    # provided list of tuples
+    # inserts every row in database sequentially
+    def insert_rows(self,records):
         try:
+            # if there is no records then error is raised
             if len(records) == 0:
                 raise Exception("zero length")
             log.info("inserting rows")
@@ -34,9 +41,9 @@ class ProblemC(Problem):
             raise Exception("Insertion in table Failed")
 
     def solve(self):
-        column_names,records = self.excel.get_data_from_xlsx("solutionB.xlsx")
+        column_names, records = self.excel.get_data_from_xlsx("solutionB.xlsx")
         self.create_table(column_names)
-        self.insert_rows(column_names,records)
+        self.insert_rows(records)
         self.result=True
 
 

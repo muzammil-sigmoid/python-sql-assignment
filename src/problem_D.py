@@ -3,6 +3,7 @@ from src.excel import Excel
 import logging
 log = logging.getLogger(__name__)
 
+
 class ProblemD(Problem):
 
     def __init__(self,cur):
@@ -15,6 +16,7 @@ class ProblemD(Problem):
         records_dept = self.cur.fetchall()
         df_dept  = self.excel.get_df_from_columns_and_tuples(["Dept_No","Dept_Name","loc"],records_dept)
         log.info("merging tables")
+        # merging dept and records from ques2 to extract dept number
         df_merged = df.merge(df_dept,on="Dept_Name",how="inner")
         df_dept_compensation = df_merged[['Dept_No','Dept_Name','Total_Compensation']].groupby(by="Dept_No").\
             agg({'Dept_Name':'max','Total_Compensation':"sum"})

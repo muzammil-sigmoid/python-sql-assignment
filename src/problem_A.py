@@ -9,6 +9,7 @@ class ProblemA(Problem):
         super(ProblemA, self).__init__(cur)
         self.excel = Excel()
 
+    # returns the column names for the table
     def get_column_names(self):
         return ["Employee Number", "Employee Name", "Assigned Manager"]
 

@@ -10,11 +10,15 @@ class ProblemB(Problem):
         super(ProblemB, self).__init__(cur)
         self.excel = Excel()
 
+    # takes start_date and end_date as date object
+    # returns the months difference between two dates
     def get_months_spent(self, start_date, end_date):
         return (end_date.year-start_date.year)*12 + end_date.month - start_date.month
 
+    # returns total compensation
     def get_total_compensation(self,months_spent,  monthly_sal, commission):
         return months_spent * monthly_sal + commission
+
 
     def solve(self):
         column_names = ["Employee_Name", "Dept_Name", "Total_Compensation", "Months_spent"]
@@ -33,6 +37,9 @@ class ProblemB(Problem):
             months_spent = self.get_months_spent(start_date,end_date)
             total_compensation = self.get_total_compensation(months_spent, monthly_sal, commission)
             department = row[6]
+            # if there is some repeated data
+            # if some employee appears twice than its compensation is compounded
+            # else new record is added
             if emp_no in data:
                 data[emp_no][2]+=total_compensation
                 data[emp_no][3]+=months_spent

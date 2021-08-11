@@ -39,7 +39,7 @@ class ProblemC(Problem):
         except Exception as err:
             log.error(err.args)
             raise Exception("Insertion in table Failed")
-
+# working of this function
     def solve(self):
         column_names, records = self.excel.get_data_from_xlsx("solutionB.xlsx")
         self.create_table(column_names)

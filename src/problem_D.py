@@ -3,13 +3,13 @@ from src.excel import Excel
 import logging
 log = logging.getLogger(__name__)
 
-
+# use  proper class name
 class ProblemD(Problem):
 
     def __init__(self,cur):
         super(ProblemD,self).__init__(cur)
         self.excel = Excel()
-
+#  use proper function name and comment flow of function
     def solve(self):
         df = self.excel.get_df_from_xlsx("solutionB.xlsx")
         self.cur.execute("select * from dept")
